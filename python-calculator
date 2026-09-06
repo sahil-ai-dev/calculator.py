@@ -1,0 +1,75 @@
+# Medium Level Calculator
+
+history = []
+
+while True:
+    print("\n===== CALCULATOR =====")
+    print("1. Addition")
+    print("2. Subtraction")
+    print("3. Multiplication")
+    print("4. Division")
+    print("5. Power")
+    print("6. Modulus")
+    print("7. Show History")
+    print("8. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "8":
+        print("Calculator closed. Thank you!")
+        break
+
+    if choice == "7":
+        print("\n--- Calculation History ---")
+        if not history:
+            print("No calculations yet.")
+        else:
+            for item in history:
+                print(item)
+        continue
+
+    if choice not in ["1", "2", "3", "4", "5", "6"]:
+        print("Invalid choice!")
+        continue
+
+    try:
+        num1 = float(input("Enter first number: "))
+        num2 = float(input("Enter second number: "))
+
+        if choice == "1":
+            result = num1 + num2
+            symbol = "+"
+
+        elif choice == "2":
+            result = num1 - num2
+            symbol = "-"
+
+        elif choice == "3":
+            result = num1 * num2
+            symbol = "*"
+
+        elif choice == "4":
+            if num2 == 0:
+                print("Error: Cannot divide by zero!")
+                continue
+            result = num1 / num2
+            symbol = "/"
+
+        elif choice == "5":
+            result = num1 ** num2
+            symbol = "**"
+
+        elif choice == "6":
+            if num2 == 0:
+                print("Error: Modulus by zero is not allowed!")
+                continue
+            result = num1 % num2
+            symbol = "%"
+
+        calculation = f"{num1} {symbol} {num2} = {result}"
+        print("Result:", result)
+
+        history.append(calculation)
+
+    except ValueError:
+        print("Please enter valid numbers!")
